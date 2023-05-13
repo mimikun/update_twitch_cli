@@ -1,10 +1,10 @@
 #!/bin/bash
 
-VERSION="$(twitch version | sed -e 's/twitch-cli\///g')"
-NEW_VERSION=$(curl --silent https://api.github.com/repos/twitchdev/twitch-cli/releases/latest | jq .name -r | sed -e 's/^v//g')
+OLD_VERSION="$(twitch version | sed -e 's/twitch-cli\///g')"
+VERSION=$(curl --silent https://api.github.com/repos/twitchdev/twitch-cli/releases/latest | jq .name -r | sed -e 's/^v//g')
 DESTINATION="/usr/local/bin/twitch"
 
-if test "$VERSION" != "$NEW_VERSION"; then
+if test "$OLD_VERSION" != "$VERSION"; then
   echo "Update found!"
   latest_archive_file="twitch-cli_${NEW_VERSION}_$(uname -s)_$(uname -m)"
   CURRENTDIR=$(pwd)
