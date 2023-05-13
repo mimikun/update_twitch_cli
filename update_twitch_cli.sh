@@ -6,10 +6,10 @@ DESTINATION="/usr/local/bin/twitch"
 
 if test "$OLD_VERSION" != "$VERSION"; then
   echo "Update found!"
-  latest_archive_file="twitch-cli_${NEW_VERSION}_$(uname -s)_$(uname -m)"
+  latest_archive_file="twitch-cli_${VERSION}_$(uname -s)_$(uname -m)"
   CURRENTDIR=$(pwd)
   cd /tmp/ || exit
-  wget "https://github.com/twitchdev/twitch-cli/releases/download/v${NEW_VERSION}/${latest_archive_file}.tar.gz"
+  wget "https://github.com/twitchdev/twitch-cli/releases/download/v${VERSION}/${latest_archive_file}.tar.gz"
   tar xvf "${latest_archive_file}.tar.gz" >>/dev/null
   cd "${CURRENTDIR}" || exit
   sudo cp "/tmp/${latest_archive_file}/twitch" ${DESTINATION}
